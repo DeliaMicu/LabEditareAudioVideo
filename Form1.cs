@@ -196,7 +196,7 @@ namespace Lab5
             }
         }
 
-        //background substraction - de terminat
+        //background substraction
         private static VideoCapture cameraCapture;
         private Image<Bgr, Byte> newBackgroundImage;
         private static IBackgroundSubtractor fgDetector;

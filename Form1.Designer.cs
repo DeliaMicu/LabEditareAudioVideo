@@ -1,7 +1,7 @@
 ﻿
 namespace Lab5
 {
-    partial class Form
+    partial class Image_Operations
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@ namespace Lab5
         private void InitializeComponent()
         {
             this.btnLoadPicture = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxNormal = new System.Windows.Forms.PictureBox();
+            this.pictureBoxBlackWhite = new System.Windows.Forms.PictureBox();
             this.btnMakeHistogram = new System.Windows.Forms.Button();
             this.textBoxAlpha = new System.Windows.Forms.TextBox();
             this.textBoxBeta = new System.Windows.Forms.TextBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxBrightness = new System.Windows.Forms.PictureBox();
             this.btnBrightness = new System.Windows.Forms.Button();
             this.btnGammaCorrection = new System.Windows.Forms.Button();
             this.textBoxGamma = new System.Windows.Forms.TextBox();
@@ -46,12 +46,18 @@ namespace Lab5
             this.textBoxResize = new System.Windows.Forms.TextBox();
             this.btnResize = new System.Windows.Forms.Button();
             this.btnRotate = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnLoadVideo = new System.Windows.Forms.Button();
+            this.labelVideo = new System.Windows.Forms.Label();
             this.btnBlending = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.textBoxRotate = new System.Windows.Forms.TextBox();
+            this.labelRotate = new System.Windows.Forms.Label();
+            this.pictureBoxResize = new System.Windows.Forms.PictureBox();
+            this.btnSubstraction = new System.Windows.Forms.Button();
+            this.btnVideoWriting = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlackWhite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBrightness)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoadPicture
@@ -64,31 +70,31 @@ namespace Lab5
             this.btnLoadPicture.TabIndex = 0;
             this.btnLoadPicture.Text = "LOAD PICTURE";
             this.btnLoadPicture.UseVisualStyleBackColor = true;
-            this.btnLoadPicture.Click += new System.EventHandler(this.button1_Click);
+            this.btnLoadPicture.Click += new System.EventHandler(this.btnLoadPicture_Click);
             // 
-            // pictureBox1
+            // pictureBoxNormal
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(24, 31);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(376, 354);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            this.pictureBoxNormal.Location = new System.Drawing.Point(24, 31);
+            this.pictureBoxNormal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxNormal.Name = "pictureBoxNormal";
+            this.pictureBoxNormal.Size = new System.Drawing.Size(376, 354);
+            this.pictureBoxNormal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxNormal.TabIndex = 1;
+            this.pictureBoxNormal.TabStop = false;
+            this.pictureBoxNormal.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBoxNormal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBoxNormal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBoxNormal.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // pictureBox2
+            // pictureBoxBlackWhite
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(428, 35);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(364, 354);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.pictureBoxBlackWhite.Location = new System.Drawing.Point(428, 35);
+            this.pictureBoxBlackWhite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxBlackWhite.Name = "pictureBoxBlackWhite";
+            this.pictureBoxBlackWhite.Size = new System.Drawing.Size(364, 354);
+            this.pictureBoxBlackWhite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxBlackWhite.TabIndex = 2;
+            this.pictureBoxBlackWhite.TabStop = false;
             // 
             // btnMakeHistogram
             // 
@@ -100,7 +106,7 @@ namespace Lab5
             this.btnMakeHistogram.TabIndex = 3;
             this.btnMakeHistogram.Text = "MAKE HISTOGRAM";
             this.btnMakeHistogram.UseVisualStyleBackColor = true;
-            this.btnMakeHistogram.Click += new System.EventHandler(this.button2_Click);
+            this.btnMakeHistogram.Click += new System.EventHandler(this.btnMakeHistogram_Click);
             // 
             // textBoxAlpha
             // 
@@ -118,14 +124,14 @@ namespace Lab5
             this.textBoxBeta.Size = new System.Drawing.Size(55, 26);
             this.textBoxBeta.TabIndex = 5;
             // 
-            // pictureBox3
+            // pictureBoxBrightness
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(822, 159);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(364, 354);
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
+            this.pictureBoxBrightness.Location = new System.Drawing.Point(822, 159);
+            this.pictureBoxBrightness.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxBrightness.Name = "pictureBoxBrightness";
+            this.pictureBoxBrightness.Size = new System.Drawing.Size(364, 192);
+            this.pictureBoxBrightness.TabIndex = 6;
+            this.pictureBoxBrightness.TabStop = false;
             // 
             // btnBrightness
             // 
@@ -137,7 +143,7 @@ namespace Lab5
             this.btnBrightness.TabIndex = 7;
             this.btnBrightness.Text = "BRIGHTNESS";
             this.btnBrightness.UseVisualStyleBackColor = true;
-            this.btnBrightness.Click += new System.EventHandler(this.button3_Click);
+            this.btnBrightness.Click += new System.EventHandler(this.btnBrightness_Click);
             // 
             // btnGammaCorrection
             // 
@@ -149,7 +155,7 @@ namespace Lab5
             this.btnGammaCorrection.TabIndex = 8;
             this.btnGammaCorrection.Text = "GAMMA CORR.";
             this.btnGammaCorrection.UseVisualStyleBackColor = true;
-            this.btnGammaCorrection.Click += new System.EventHandler(this.button4_Click);
+            this.btnGammaCorrection.Click += new System.EventHandler(this.btnGammaCorrection_Click);
             // 
             // textBoxGamma
             // 
@@ -210,7 +216,7 @@ namespace Lab5
             // btnResize
             // 
             this.btnResize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnResize.Location = new System.Drawing.Point(1262, 83);
+            this.btnResize.Location = new System.Drawing.Point(1248, 72);
             this.btnResize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(150, 61);
@@ -222,7 +228,7 @@ namespace Lab5
             // btnRotate
             // 
             this.btnRotate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnRotate.Location = new System.Drawing.Point(1262, 182);
+            this.btnRotate.Location = new System.Drawing.Point(1262, 231);
             this.btnRotate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRotate.Name = "btnRotate";
             this.btnRotate.Size = new System.Drawing.Size(150, 61);
@@ -231,26 +237,26 @@ namespace Lab5
             this.btnRotate.UseVisualStyleBackColor = true;
             this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
             // 
-            // button1
+            // btnLoadVideo
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(561, 457);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 92);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "LOAD VIDEO";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnLoadVideo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnLoadVideo.Location = new System.Drawing.Point(561, 457);
+            this.btnLoadVideo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLoadVideo.Name = "btnLoadVideo";
+            this.btnLoadVideo.Size = new System.Drawing.Size(153, 92);
+            this.btnLoadVideo.TabIndex = 18;
+            this.btnLoadVideo.Text = "LOAD VIDEO";
+            this.btnLoadVideo.UseVisualStyleBackColor = true;
+            this.btnLoadVideo.Click += new System.EventHandler(this.btnLoadVideo_Click);
             // 
-            // label1
+            // labelVideo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(610, 411);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "label1";
+            this.labelVideo.AutoSize = true;
+            this.labelVideo.Location = new System.Drawing.Point(610, 411);
+            this.labelVideo.Name = "labelVideo";
+            this.labelVideo.Size = new System.Drawing.Size(31, 20);
+            this.labelVideo.TabIndex = 19;
+            this.labelVideo.Text = "0/0";
             // 
             // btnBlending
             // 
@@ -262,14 +268,70 @@ namespace Lab5
             this.btnBlending.UseVisualStyleBackColor = true;
             this.btnBlending.Click += new System.EventHandler(this.btnBlending_Click);
             // 
-            // Form
+            // textBoxRotate
+            // 
+            this.textBoxRotate.Location = new System.Drawing.Point(1299, 166);
+            this.textBoxRotate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxRotate.Name = "textBoxRotate";
+            this.textBoxRotate.Size = new System.Drawing.Size(55, 26);
+            this.textBoxRotate.TabIndex = 21;
+            // 
+            // labelRotate
+            // 
+            this.labelRotate.AutoSize = true;
+            this.labelRotate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelRotate.Location = new System.Drawing.Point(1219, 167);
+            this.labelRotate.Name = "labelRotate";
+            this.labelRotate.Size = new System.Drawing.Size(74, 25);
+            this.labelRotate.TabIndex = 22;
+            this.labelRotate.Text = "Rotate:";
+            // 
+            // pictureBoxResize
+            // 
+            this.pictureBoxResize.Location = new System.Drawing.Point(822, 369);
+            this.pictureBoxResize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBoxResize.Name = "pictureBoxResize";
+            this.pictureBoxResize.Size = new System.Drawing.Size(364, 192);
+            this.pictureBoxResize.TabIndex = 23;
+            this.pictureBoxResize.TabStop = false;
+            // 
+            // btnSubstraction
+            // 
+            this.btnSubstraction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSubstraction.Location = new System.Drawing.Point(1262, 411);
+            this.btnSubstraction.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSubstraction.Name = "btnSubstraction";
+            this.btnSubstraction.Size = new System.Drawing.Size(150, 61);
+            this.btnSubstraction.TabIndex = 24;
+            this.btnSubstraction.Text = "SUBSTRACTION";
+            this.btnSubstraction.UseVisualStyleBackColor = true;
+            this.btnSubstraction.Click += new System.EventHandler(this.btnSubstraction_Click);
+            // 
+            // btnVideoWriting
+            // 
+            this.btnVideoWriting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnVideoWriting.Location = new System.Drawing.Point(1262, 500);
+            this.btnVideoWriting.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnVideoWriting.Name = "btnVideoWriting";
+            this.btnVideoWriting.Size = new System.Drawing.Size(150, 61);
+            this.btnVideoWriting.TabIndex = 25;
+            this.btnVideoWriting.Text = "VIDEO WRITING";
+            this.btnVideoWriting.UseVisualStyleBackColor = true;
+            this.btnVideoWriting.Click += new System.EventHandler(this.btnVideoWriting_Click);
+            // 
+            // Image_Operations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1486, 562);
+            this.Controls.Add(this.btnVideoWriting);
+            this.Controls.Add(this.btnSubstraction);
+            this.Controls.Add(this.pictureBoxResize);
+            this.Controls.Add(this.labelRotate);
+            this.Controls.Add(this.textBoxRotate);
             this.Controls.Add(this.btnBlending);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelVideo);
+            this.Controls.Add(this.btnLoadVideo);
             this.Controls.Add(this.btnRotate);
             this.Controls.Add(this.btnResize);
             this.Controls.Add(this.textBoxResize);
@@ -280,19 +342,20 @@ namespace Lab5
             this.Controls.Add(this.textBoxGamma);
             this.Controls.Add(this.btnGammaCorrection);
             this.Controls.Add(this.btnBrightness);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBoxBrightness);
             this.Controls.Add(this.textBoxBeta);
             this.Controls.Add(this.textBoxAlpha);
             this.Controls.Add(this.btnMakeHistogram);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxBlackWhite);
+            this.Controls.Add(this.pictureBoxNormal);
             this.Controls.Add(this.btnLoadPicture);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Form";
+            this.Name = "Image_Operations";
             this.Text = "Image Operations";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlackWhite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBrightness)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,12 +364,12 @@ namespace Lab5
         #endregion
 
         private System.Windows.Forms.Button btnLoadPicture;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBoxNormal;
+        private System.Windows.Forms.PictureBox pictureBoxBlackWhite;
         private System.Windows.Forms.Button btnMakeHistogram;
         private System.Windows.Forms.TextBox textBoxAlpha;
         private System.Windows.Forms.TextBox textBoxBeta;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBoxBrightness;
         private System.Windows.Forms.Button btnBrightness;
         private System.Windows.Forms.Button btnGammaCorrection;
         private System.Windows.Forms.TextBox textBoxGamma;
@@ -317,9 +380,14 @@ namespace Lab5
         private System.Windows.Forms.TextBox textBoxResize;
         private System.Windows.Forms.Button btnResize;
         private System.Windows.Forms.Button btnRotate;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnLoadVideo;
+        private System.Windows.Forms.Label labelVideo;
         private System.Windows.Forms.Button btnBlending;
+        private System.Windows.Forms.TextBox textBoxRotate;
+        private System.Windows.Forms.Label labelRotate;
+        private System.Windows.Forms.PictureBox pictureBoxResize;
+        private System.Windows.Forms.Button btnSubstraction;
+        private System.Windows.Forms.Button btnVideoWriting;
     }
 }
 

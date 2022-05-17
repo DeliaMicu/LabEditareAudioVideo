@@ -1,0 +1,51 @@
+intr-o bucla
+	generez o poza
+	afisez poza
+	astept o secunda
+
+WinForms
+	Form1.cs
+		List<string> GiveMeTheListOfFiles(string directoryPath)
+			{
+			string[] FileNames = Directory.GetFiles(@"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5\FolderWithPictures", "*.png");
+            List<Image<Bgr, byte>> listImages = new List<Image<Bgr, byte>>();
+            foreach (var file in FileNames)
+            {
+                listImages.Add(new Image<Bgr, byte>(file));
+            }
+			
+				return FileNames;
+			}
+			
+			onButtonClick() 
+			{
+				var listaInputPoze =  GiveMeTheListOfFiles("sghsvhjds");
+				var listaBmpDeAFisat =  BusinessLogic.ComputeBlendedImages(listaInputPoze);
+				
+				foreach(var item in listaBmpDeAFisat)
+				{
+					pictureBox1.Image = item;
+					await Task.Delay(25);
+				}
+			}
+			
+	BusinessLogic.cs
+		List<Bitmap> ComputeBlendedImages(List<string> listImages)
+		{
+			var lista = new List<Bitmap>();
+			
+            for (int i = 0; i < listImages.Count - 1; i++)
+            {
+                for (double alpha = 0.0; alpha <= 1.0; alpha += 0.01)
+                {
+                    //pictureBox1.Image = listImages[i + 1].AddWeighted(listImages[i], alpha, 1 - alpha, 0).AsBitmap();
+					lista.Add(BlendImages(,....);
+				}
+            }
+			return lista;
+		}
+		
+		Bitmap BlendImages(Image1, Image2, alpha)
+		{
+			Image1.AddWeighted(image2, alpha, 1-alpha, 0);
+		}

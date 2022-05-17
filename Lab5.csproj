@@ -113,5 +113,11 @@
       <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LibEditareAudioVideo\BusinessLogic.csproj">
+      <Project>{B24CCE1B-40A4-46CA-9B3C-BCC30D9A7FD5}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

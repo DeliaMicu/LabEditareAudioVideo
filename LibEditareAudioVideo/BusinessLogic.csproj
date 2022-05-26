@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VideoOperations.cs" />
+    <Compile Include="AudioOperations.cs" />
     <Compile Include="ImageOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +55,15 @@
     </PackageReference>
     <PackageReference Include="Emgu.CV.UI">
       <Version>4.5.5.4823</Version>
+    </PackageReference>
+    <PackageReference Include="NAudio">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="NAudio.Core">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="NAudio.WinForms">
+      <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>

@@ -361,3 +361,18 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/FolderWithAudio/Audio1.wav
+/FolderWithAudio/Audio2.wav
+/FolderWithAudio/Audio3.wav
+/FolderWithAudio/TrimmedWav.wav
+/FolderWithAudio/Stuff.mp3
+/FolderWithAudio/StereoToMono.wav
+/FolderWithAudio/Stereo.wav
+/FolderWithAudio/resampler.wav
+/FolderWithAudio/Playlist.wav
+/FolderWithAudio/MonoToStereo.wav
+/FolderWithAudio/Mono.mp3
+/FolderWithAudio/MixedAudio.wav
+/FolderWithAudio/CovertedWavToMp3.mp3
+/FolderWithAudio/CovertedMp3ToWav.wav
+/VideoWriting.mpg

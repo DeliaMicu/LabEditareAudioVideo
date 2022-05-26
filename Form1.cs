@@ -1,9 +1,5 @@
 ﻿using BusinessLogic;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using Emgu.CV.Structure;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Lab5
@@ -11,6 +7,8 @@ namespace Lab5
     public partial class Image_Operations : Form
     {
         ImageOperations imageOp = new ImageOperations();
+        VideoOperations videoOp = new VideoOperations();
+        AudioOperations audioOp = new AudioOperations();
 
         public Image_Operations()
         {
@@ -39,6 +37,12 @@ namespace Lab5
         private void btnGammaCorrection_Click(object sender, EventArgs e)
         {
             imageOp.GammaCorrection(textBoxGamma, pictureBoxBrightness);
+        }
+
+        //red channel
+        private void btnRedChannel_Click(object sender, EventArgs e)
+        {
+            pictureBoxRedChannel.Image = imageOp.RedChannel(@"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5\FolderWithPictures\Flowers.png");
         }
 
         //resize
@@ -78,7 +82,7 @@ namespace Lab5
         //load video
         private void btnLoadVideo_Click(object sender, EventArgs e)
         {
-            imageOp.PlayVideo(pictureBoxNormal, labelVideo);
+            videoOp.PlayVideo(pictureBoxVideo, labelVideo);
         }
 
         //blending images
@@ -88,79 +92,91 @@ namespace Lab5
         }
 
         //background substraction
-        private static VideoCapture cameraCapture;
-        private Image<Bgr, Byte> newBackgroundImage;
-        private static IBackgroundSubtractor fgDetector;
+        private void ProcessFrames(object e, EventArgs i)
+        {
+            pictureBoxResize.Image = videoOp.ProcessFrame();
+        }
 
         private void btnSubstraction_Click(object sender, EventArgs e)
         {
-            //cameraCapture = new VideoCapture();
-            //Mat frame = cameraCapture.QueryFrame();
-            //Image<Bgr, byte> frameImage = frame.ToImage<Bgr, Byte>();
-            //fgDetector = new BackgroundSubtractorMOG2();
-            //Mat foregroundMask = new Mat();
-            //fgDetector.Apply(frame, foregroundMask);
-            //var foregroundMaskImage = foregroundMask.ToImage<Gray, Byte>();
-            //foregroundMaskImage = foregroundMaskImage.Not();
-
-            //var copyOfNewBackgroundImage = newBackgroundImage.Resize(foregroundMaskImage.Width, foregroundMaskImage.Height, Inter.Lanczos4);
-            //copyOfNewBackgroundImage = copyOfNewBackgroundImage.Copy(foregroundMaskImage);
-
-            //foregroundMaskImage = foregroundMaskImage.Not();
-            //frameImage = frameImage.Copy(foregroundMaskImage);
-            //frameImage = frameImage.Or(copyOfNewBackgroundImage);
-
-            //try
-            //{
-            //    cameraCapture = new VideoCapture();
-            //    fgDetector = new BackgroundSubtractorMOG2();
-            //    Application.Idle += ProcessFrames;
-            //}
-            //catch (NullReferenceException excpt)
-            //{
-            //    MessageBox.Show(excpt.Message);
-            //}
+            try
+            {
+                videoOp.BackgroundSubstraction();
+                Application.Idle += ProcessFrames;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //video writing
         private void btnVideoWriting_Click(object sender, EventArgs e)
         {
-            VideoCapture capture = new VideoCapture(@"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5\StarWars2.mp4");
-
-            int Fourcc = Convert.ToInt32(capture.Get(CapProp.FourCC));
-            int Width = Convert.ToInt32(capture.Get(CapProp.FrameWidth));
-            int Height = Convert.ToInt32(capture.Get(CapProp.FrameHeight));
-            var Fps = capture.Get(CapProp.Fps);
-            var TotalFrame = capture.Get(CapProp.FrameCount);
-
-
-            string destionpath = @"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5";
-            using (VideoWriter writer = new VideoWriter(destionpath, Fourcc, Fps, new Size(Width, Height), true))
-            {
-                Image<Bgr, byte> logo = new Image<Bgr, byte>(@"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5\FolderWithPictures\logo.jpg");
-                Mat m = new Mat();
-
-                var FrameNo = 1;
-                while (FrameNo < TotalFrame)
-                {
-                    capture.Read(m);
-                    Image<Bgr, byte> img = m.ToImage<Bgr, byte>();
-                    img.ROI = new Rectangle(Width - logo.Width - 30, 10, logo.Width, logo.Height);
-                    logo.CopyTo(img);
-
-                    img.ROI = Rectangle.Empty;
-
-                    writer.Write(img.Mat);
-                    FrameNo++;
-                }
-            }
+            videoOp.VideoWriting();
         }
 
+        //NAudio playback
+        private void btnPlayback_Click(object sender, EventArgs e)
+        {
+            audioOp.Playback();
+        }
 
+        //mp3 to wav
+        private void btnConvertMp3ToWav_Click(object sender, EventArgs e)
+        {
+            audioOp.ConvertMp3ToWav();
+        }
 
+        //wav to mp3
+        private void btnConvertWavToMp3_Click(object sender, EventArgs e)
+        {
+            audioOp.ConvertWavToMp3();
+        }
 
+        //mix audio
+        private void btnMixAudio_Click(object sender, EventArgs e)
+        {
+            audioOp.MixAudio();
+        }
 
+        private void btnTrimm_Click(object sender, EventArgs e)
+        {
+            string inputAdress = @"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5\FolderWithAudio\Audio2.wav";
+            string output = @"D:\Facultate\EDITARE AUDIO-VIDEO\Lab5\FolderWithAudio\TrimmedWav.wav";
+            int beginning = 100;
+            int ending = 500;
+            audioOp.TrimWavFile(inputAdress, output, beginning, ending);
+        }
 
+        private void btnMono_Click(object sender, EventArgs e)
+        {
+            audioOp.MonoToStereo();
+        }
 
+        private void btnStereo_Click(object sender, EventArgs e)
+        {
+            audioOp.StereoToMono();
+        }
+
+        private void btnConcatenateSkipTake_Click(object sender, EventArgs e)
+        {
+            audioOp.ConcatenateSkipTake();
+        }
+
+        private void btnPitch_Click(object sender, EventArgs e)
+        {
+            audioOp.Pitch();
+        }
+
+        private void btnResampler_Click(object sender, EventArgs e)
+        {
+            audioOp.Resampler();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

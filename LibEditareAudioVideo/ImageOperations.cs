@@ -1,5 +1,4 @@
 ﻿using Emgu.CV;
-using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using System;
@@ -13,15 +12,9 @@ namespace BusinessLogic
 {
     public class ImageOperations
     {
-
         Rectangle rect;
         Point StartROI;
         bool mouseDown;
-
-        int TotalFrame, FrameNo;
-        double Fps;
-        bool IsReadingFrame;
-        VideoCapture capture;
 
         public void ConvertToGrayScale(PictureBox imgOriginala, PictureBox imgAlbNegru)
         {
@@ -73,6 +66,24 @@ namespace BusinessLogic
                 My_Image._GammaCorrect(gamma);
                 imgContrastCorrection.Image = My_Image.ToBitmap();
             }
+        }
+
+        public Bitmap RedChannel(string filename)
+        {
+            var Image = new Image<Bgr, byte>(filename);
+
+            Image<Bgr, byte> outputImage = new Image<Bgr, byte>(Image.Size);
+            Image.CopyTo(outputImage);
+            var data = outputImage.Data;
+            for (int i = 0; i < outputImage.Width; i++)
+            {
+                for (int j = 0; j < outputImage.Height; j++)
+                {
+                    data[j, i, 0] = 0;
+                    data[j, i, 1] = 0;
+                }
+            }
+            return outputImage.Convert<Bgr, byte>().AsBitmap();
         }
 
         public void Resize(TextBox Resize, PictureBox imgResizeRotate)
@@ -154,51 +165,6 @@ namespace BusinessLogic
                     imgOriginala.Image = listImages[i + 1].AddWeighted(listImages[i], alpha, 1 - alpha, 0).AsBitmap();
                     await Task.Delay(25);
                 }
-            }
-        }
-
-        private async void ReadAllFrames(PictureBox videoBox, Label label1)
-        {
-
-            Mat m = new Mat();
-            while (IsReadingFrame == true && FrameNo < TotalFrame)
-            {
-                FrameNo += 1;
-                var mat = capture.QueryFrame();
-                videoBox.Image = mat.ToBitmap();
-                await Task.Delay(1000 / Convert.ToInt16(Fps));
-                label1.Text = FrameNo.ToString() + "/" + TotalFrame.ToString();
-            }
-        }
-
-        public void PlayVideo(PictureBox videoBox, Label label1)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                capture = new VideoCapture(ofd.FileName);
-                Mat m = new Mat();
-                capture.Read(m);
-                videoBox.Image = m.ToBitmap();
-
-                TotalFrame = (int)capture.Get(CapProp.FrameCount);
-                Fps = capture.Get(CapProp.Fps);
-                FrameNo = 1;
-
-                NumericUpDown numericUpDown1 = new NumericUpDown();
-                NumericUpDown numericUpDown2 = new NumericUpDown();
-                NumericUpDown numericUpDown3 = new NumericUpDown();
-
-                numericUpDown1.Value = FrameNo;
-                numericUpDown1.Minimum = 0;
-                numericUpDown1.Maximum = TotalFrame;
-
-                if (capture == null)
-                {
-                    return;
-                }
-                IsReadingFrame = true;
-                ReadAllFrames(videoBox, label1);
             }
         }
     }
